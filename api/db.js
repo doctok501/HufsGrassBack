@@ -41,12 +41,11 @@ const getCommitters = async (dateString) => {
       isCommit: false,
     });
   });
-
   query['rows'].map((e) => {
     const idx = username_list.indexOf(e['github_username']);
     if (commit.includes(notCommit[idx])) return;
     commit.push(notCommit[idx]);
-
+	// console.log(listWithGithub);
     listWithGithub = listWithGithub.map((element) => {
       if (element.username === e['github_username']) {
         return {
@@ -96,6 +95,7 @@ const getAllCommits = async (startDate, endDate) => {
 };
 
 const saveCommit = async ({ username, commitLink, timestamp }) => {
+  // console.log("saveCommit");
   pool.query(
     'INSERT INTO COMMIT_LOG (github_username, commit_link, created_on) VALUES ($1, $2, $3)',
     [username, commitLink, timestamp],

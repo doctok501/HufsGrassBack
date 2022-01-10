@@ -7,9 +7,7 @@ switch (process.argv[2]) {
     (async () => {
       const lastTime = await getLastSavedCommitTime().then((res) => res);
       let unSavedCommit = await getUnsavedCommit(lastTime);
-	  console.log(lastTime);
-	  console.log(unSavedCommit);
-	  console.log(member_list_github);
+	  // console.log(unSavedCommit);
       unSavedCommit = unSavedCommit.reverse();
       unSavedCommit.map(async (e) => {
         if (!member_list_github.includes(e['author_name'])) {
@@ -21,6 +19,6 @@ switch (process.argv[2]) {
           timestamp: e['timestamp'],
         });
       });
-      console.log(new Date());
+      // console.log(new Date());
     })();
 }
